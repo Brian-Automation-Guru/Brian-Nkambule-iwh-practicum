@@ -25,6 +25,7 @@ app.get('/contacts', async (req, res) => {
         console.error(error);
     }
 });
+app.listen(3000, () => console.log('Listening on http://localhost:3000'));
 
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
@@ -81,4 +82,3 @@ app.post('/update', async (req, res) => {
 
 
 // * Localhost
-app.listen(3000, () => console.log('Listening on http://localhost:3000'));
