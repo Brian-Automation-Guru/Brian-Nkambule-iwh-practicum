@@ -40,30 +40,30 @@ app.get('/update-cobj', async (req, res) => {
 });                
 
 //route 3: post
-app.post('/update-cobj/', async (req, res) => {
+app.post('/update-cobj', async (req, res) => {
+    const { newName, newRange, newDescription } = req.body;
 
-    const postData = {
+    const data = {
         properties: {
-            "name": req.body.name,
-            "range": req.body.range,
-            "description": req.body.desc,
+            name: newName,
+            range: newRange,
+            description: newDescription
         }
-    }
+    };
 
-    //const newCobj = `https://api.hubapi.com/crm/v3/objects/air-defense-systems/`;
-    const newCobj = `https://api.hubapi.com/crm/v3/objects/2-143983893/`;
+    const url = 'https://api.hubapi.com/crm/v3/objects/2-143983893';
     const headers = {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
-    }
+    };
 
-    try { 
-        console.log('1');
-        await axios.post(newCobj, postData, { headers } );
+    try {
+        await axios.post(url, data, { headers });
         res.redirect('/');
-    } catch(err) {
-        console.error(err);
+    } catch (error) {
+        console.error('Error creating object:', error.response?.data || error.message);
+        res.status(500).send("Failed to create custom object.");
     }
-
 });
+
 app.listen(3000, () => console.log('Listening on http://localhost:3000'));
