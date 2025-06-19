@@ -12,15 +12,15 @@ app.use(express.json());
 const accessToken = process.env.TOKEN;
 
 app.get('/', async (req, res) => {
-    const AirDefSystems = 'https://api.hubspot.com/crm/v3/objects/';
+    const airDefSystems = 'https://api.hubspot.com/crm/v3/objects/air_defense_systems/?limit=10&properties=name,range,description&archived=false';
     const headers = {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
     }
     try {
-        const resp = await axios.get(contacts, { headers });
+        const resp = await axios.get(airDefSystems, { headers });
         const data = resp.data.results;
-        res.render('contacts', { title: 'Contacts | HubSpot APIs', data });      
+        res.render('homepage', { title: 'Air Defense Systems | HubSpot APIs', data });      
     } catch (error) {
         console.error(error);
     }
