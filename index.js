@@ -12,7 +12,7 @@ app.use(express.json());
 const accessToken = process.env.TOKEN;
 
 app.get('/', async (req, res) => {
-    const airDefSystems = 'https://api.hubspot.com/crm/v3/objects/air_defense_systems?limit=10&properties=name,range,description&archived=false';
+    const airDefSystems = 'https://api.hubspot.com/crm/v3/objects/2-143983893?limit=10&properties=name,range,description&archived=false';
     const headers = {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
